@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Skill;
+use App\Models\Institut;
 
 class Profession extends Model
 {
@@ -11,13 +13,8 @@ class Profession extends Model
 
     public $timestamps = false;
 
-    public function skills()
-        {
-            return $this->belongsToMany(Skill::class);
-        }
+    protected $fillable = [
+        'name',
+    ];
 
-    public function instituts()
-        {
-            return $this->belongsToMany(Institut::class);
-        }
 }

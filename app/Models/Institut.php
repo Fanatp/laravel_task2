@@ -11,8 +11,8 @@ class Institut extends Model
 
     public $timestamps = false;
 
-    public function professions()
-    {
-        return $this->belongsToMany(Profession::class);
-    }
+    protected $fillable = [
+        'name',
+    ];
+
 }

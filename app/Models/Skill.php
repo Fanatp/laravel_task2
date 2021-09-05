@@ -11,8 +11,9 @@ class Skill extends Model
 
     public $timestamps = false;
 
-    public function profession()
-    {
-        return $this->belongsToMany(Profession::class);
-    }
+    protected $fillable = [
+        'name',
+    ];
+
+
 }

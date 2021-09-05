@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSkillProfessionInstitutTable extends Migration
+class CreateProfessionSkillTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSkillProfessionInstitutTable extends Migration
      */
     public function up()
     {
-        Schema::create('skill_profession_institut', function (Blueprint $table) {
-           $table->integer('skill_id');
-           $table->integer('profession_id');
-           $table->integer('institut_id');
+        Schema::create('profession_skil', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('profession_id')->constrained();
+            $table->foreignId('skill_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateSkillProfessionInstitutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skill_profession_institut');
+        Schema::dropIfExists('profession_skil');
     }
 }
