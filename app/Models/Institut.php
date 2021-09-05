@@ -15,4 +15,8 @@ class Institut extends Model
         'name',
     ];
 
+    public function professions(){
+        return $this->belongsToMany(Profession::class);
+    }
+
 }

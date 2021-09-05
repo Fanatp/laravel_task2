@@ -19,11 +19,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($professions as $profession)
                         <tr>
-                            <td>Профессия</td>
-                            <td>Список навыков для профессии</td>
-                            <td>Список учебных заведений для профессии</td>
+                            <td>{{$profession->id}} - {{$profession->name}}</td>
+                            <td>
+                                @foreach($profession->skills as $skill)
+                                    {{ $skill->name }}<br>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach( $profession->instituts as $institut)
+                                {{$institut->name}}<Br>
+                                @endforeach
+                            </td>
                         </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
