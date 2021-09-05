@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Вер 05 2021 р., 17:15
+-- Час створення: Вер 05 2021 р., 18:04
 -- Версія сервера: 8.0.19
 -- Версія PHP: 8.0.8
 
@@ -126,7 +126,16 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
 (53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12);
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(56, 7, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(57, 7, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(61, 7, 'institut_belongstomany_profession_relationship', 'relationship', 'professions', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Profession\",\"table\":\"professions\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"institut_profession\",\"pivot\":\"1\",\"taggable\":\"0\"}', 3),
+(63, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(64, 10, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(65, 10, 'skill_belongstomany_profession_relationship', 'relationship', 'professions', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Profession\",\"table\":\"professions\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"profession_skill\",\"pivot\":\"1\",\"taggable\":\"0\"}', 3),
+(66, 11, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(67, 11, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(68, 11, 'profession_belongstomany_institut_relationship', 'relationship', 'instituts', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Institut\",\"table\":\"instituts\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"institut_profession\",\"pivot\":\"1\",\"taggable\":null}', 3);
 
 -- --------------------------------------------------------
 
@@ -162,7 +171,10 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-09-05 07:55:42', '2021-09-05 07:55:42'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2021-09-05 07:55:43', '2021-09-05 07:55:43'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2021-09-05 07:55:43', '2021-09-05 07:55:43'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2021-09-05 07:55:44', '2021-09-05 07:55:44');
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2021-09-05 07:55:44', '2021-09-05 07:55:44'),
+(7, 'instituts', 'instituts', 'Institut', 'Instituts', 'voyager-company', 'App\\Models\\Institut', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-09-05 11:21:24', '2021-09-05 11:50:22'),
+(10, 'skills', 'skills', 'Skill', 'Skills', NULL, 'App\\Models\\Skill', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-09-05 11:32:59', '2021-09-05 11:34:43'),
+(11, 'professions', 'professions', 'Profession', 'Professions', 'voyager-key', 'App\\Models\\Profession', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"id\",\"order_display_column\":\"name\",\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-09-05 11:47:50', '2021-09-05 11:47:50');
 
 -- --------------------------------------------------------
 
@@ -257,7 +269,9 @@ INSERT INTO `institut_profession` (`id`, `profession_id`, `institut_id`, `create
 (9, 22, 25, NULL, NULL),
 (10, 22, 27, NULL, NULL),
 (11, 22, 29, NULL, NULL),
-(12, 19, 22, NULL, NULL);
+(12, 19, 22, NULL, NULL),
+(13, 2, 24, NULL, NULL),
+(14, 5, 24, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -318,7 +332,10 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2021-09-05 07:55:42', '2021-09-05 07:55:42', 'voyager.settings.index', NULL),
 (11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2021-09-05 07:55:43', '2021-09-05 07:55:43', 'voyager.categories.index', NULL),
 (12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2021-09-05 07:55:43', '2021-09-05 07:55:43', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2021-09-05 07:55:44', '2021-09-05 07:55:44', 'voyager.pages.index', NULL);
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2021-09-05 07:55:44', '2021-09-05 07:55:44', 'voyager.pages.index', NULL),
+(14, 1, 'Instituts', '', '_self', 'voyager-company', '#000000', NULL, 15, '2021-09-05 11:21:24', '2021-09-05 11:51:13', 'voyager.instituts.index', 'null'),
+(16, 1, 'Skills', '', '_self', 'voyager-params', '#000000', NULL, 17, '2021-09-05 11:33:00', '2021-09-05 11:51:35', 'voyager.skills.index', 'null'),
+(17, 1, 'Professions', '', '_self', 'voyager-key', NULL, NULL, 18, '2021-09-05 11:47:50', '2021-09-05 11:47:50', 'voyager.professions.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -473,7 +490,22 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (37, 'read_pages', 'pages', '2021-09-05 07:55:44', '2021-09-05 07:55:44'),
 (38, 'edit_pages', 'pages', '2021-09-05 07:55:44', '2021-09-05 07:55:44'),
 (39, 'add_pages', 'pages', '2021-09-05 07:55:44', '2021-09-05 07:55:44'),
-(40, 'delete_pages', 'pages', '2021-09-05 07:55:44', '2021-09-05 07:55:44');
+(40, 'delete_pages', 'pages', '2021-09-05 07:55:44', '2021-09-05 07:55:44'),
+(41, 'browse_instituts', 'instituts', '2021-09-05 11:21:24', '2021-09-05 11:21:24'),
+(42, 'read_instituts', 'instituts', '2021-09-05 11:21:24', '2021-09-05 11:21:24'),
+(43, 'edit_instituts', 'instituts', '2021-09-05 11:21:24', '2021-09-05 11:21:24'),
+(44, 'add_instituts', 'instituts', '2021-09-05 11:21:24', '2021-09-05 11:21:24'),
+(45, 'delete_instituts', 'instituts', '2021-09-05 11:21:24', '2021-09-05 11:21:24'),
+(51, 'browse_skills', 'skills', '2021-09-05 11:33:00', '2021-09-05 11:33:00'),
+(52, 'read_skills', 'skills', '2021-09-05 11:33:00', '2021-09-05 11:33:00'),
+(53, 'edit_skills', 'skills', '2021-09-05 11:33:00', '2021-09-05 11:33:00'),
+(54, 'add_skills', 'skills', '2021-09-05 11:33:00', '2021-09-05 11:33:00'),
+(55, 'delete_skills', 'skills', '2021-09-05 11:33:00', '2021-09-05 11:33:00'),
+(56, 'browse_professions', 'professions', '2021-09-05 11:47:50', '2021-09-05 11:47:50'),
+(57, 'read_professions', 'professions', '2021-09-05 11:47:50', '2021-09-05 11:47:50'),
+(58, 'edit_professions', 'professions', '2021-09-05 11:47:50', '2021-09-05 11:47:50'),
+(59, 'add_professions', 'professions', '2021-09-05 11:47:50', '2021-09-05 11:47:50'),
+(60, 'delete_professions', 'professions', '2021-09-05 11:47:50', '2021-09-05 11:47:50');
 
 -- --------------------------------------------------------
 
@@ -530,7 +562,22 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (37, 1),
 (38, 1),
 (39, 1),
-(40, 1);
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1);
 
 -- --------------------------------------------------------
 
@@ -676,7 +723,12 @@ INSERT INTO `profession_skill` (`id`, `profession_id`, `skill_id`, `created_at`,
 (16, 22, 26, NULL, NULL),
 (17, 30, 26, NULL, NULL),
 (18, 13, 26, NULL, NULL),
-(19, 19, 26, NULL, NULL);
+(19, 19, 26, NULL, NULL),
+(20, 1, 8, NULL, NULL),
+(21, 1, 29, NULL, NULL),
+(22, 3, 29, NULL, NULL),
+(23, 18, 29, NULL, NULL),
+(24, 29, 29, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -858,7 +910,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$m0npJyMPP62u5B20xKkxlecOqvd7YIO7WF9ZoiI9kzY6T42PlYv9q', '01QYSOMIbJYbX0ytfJLMoUtSq7n1RzbUC3FbWULzsVxSOoo5RVWwMTBE0A0n', NULL, '2021-09-05 07:55:43', '2021-09-05 07:55:43');
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$m0npJyMPP62u5B20xKkxlecOqvd7YIO7WF9ZoiI9kzY6T42PlYv9q', 'oUcWTCrbFzBPSGPQMLPPYQgm6wqqVcXmWUKEL9VFAsgSAxV9J7PnHPTAPXKd', '{\"locale\":\"ru\"}', '2021-09-05 07:55:43', '2021-09-05 11:57:45'),
+(2, 1, 'Василь', 'fanatu072@gmail.com', 'users/default.png', NULL, '$2y$10$QQcQJOEtKeRokxH6ueh1gu4HXpjSdggTSSJlZudRk3/hDxNAsT6vO', NULL, '{\"locale\":\"ru\"}', '2021-09-05 11:59:24', '2021-09-05 11:59:24');
 
 -- --------------------------------------------------------
 
@@ -1053,13 +1106,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблиці `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT для таблиці `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблиці `failed_jobs`
@@ -1077,7 +1130,7 @@ ALTER TABLE `instituts`
 -- AUTO_INCREMENT для таблиці `institut_profession`
 --
 ALTER TABLE `institut_profession`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблиці `menus`
@@ -1089,7 +1142,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT для таблиці `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблиці `migrations`
@@ -1107,7 +1160,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT для таблиці `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT для таблиці `personal_access_tokens`
@@ -1131,7 +1184,7 @@ ALTER TABLE `professions`
 -- AUTO_INCREMENT для таблиці `profession_skill`
 --
 ALTER TABLE `profession_skill`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT для таблиці `roles`
@@ -1161,7 +1214,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT для таблиці `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Обмеження зовнішнього ключа збережених таблиць
