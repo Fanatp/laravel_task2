@@ -20,4 +20,8 @@ Route::get('/', function () {
 Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
 require __DIR__.'/auth.php';
