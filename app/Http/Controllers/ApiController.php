@@ -66,17 +66,15 @@ class ApiController extends Controller
         $proff_id = array();
         $institut = array();
         foreach ($request as $item) {
-//            $data[] = $item;
-
             foreach ($skils as $skill) {
-
                 if($skill->id == $item){
+
                     if(!in_array($skill->name, $data)) $data[] = $skill->name;
 
-                    foreach ($skill->professions as $profession) {
-                        if(!in_array($profession->id, $proff_id))  $proff_id[] = $profession->id;
-                        if(!in_array($profession->name, $proff))  $proff[] = $profession->name;
-                    }
+                        foreach ($skill->professions as $profession) {
+                            if(!in_array($profession->id, $proff_id))  $proff_id[] = $profession->id;
+                            if(!in_array($profession->name, $proff))  $proff[] = $profession->name;
+                        }
                 }
             }
 
@@ -89,10 +87,7 @@ class ApiController extends Controller
                         if(!in_array($inst->name , $institut))  $institut[] = $inst->name;
                     }
                 }
-
-
             }
-
         }
 
 
