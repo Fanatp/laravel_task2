@@ -10,4 +10,9 @@ class Institut extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function professions()
+    {
+        return $this->belongsToMany(Profession::class);
+    }
 }

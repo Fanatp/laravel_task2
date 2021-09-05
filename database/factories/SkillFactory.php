@@ -22,7 +22,7 @@ class SkillFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => "Skill_".$this->faker->name();
         ];
     }
 }

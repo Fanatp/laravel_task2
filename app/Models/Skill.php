@@ -10,4 +10,9 @@ class Skill extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function profession()
+    {
+        return $this->belongsToMany(Profession::class);
+    }
 }

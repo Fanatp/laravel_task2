@@ -22,7 +22,7 @@ class InstitutFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => "Institut_".$this->faker->name();
         ];
     }
 }

@@ -22,7 +22,7 @@ class ProfessionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => "Profession_".$this->faker->name();
         ];
     }
 }
