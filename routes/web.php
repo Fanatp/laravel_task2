@@ -21,16 +21,5 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/test', function (){
-
-    $prof = \App\Models\Profession::all();
-
-    foreach ($prof as $pro) {
-        echo $pro->name."<br>-------------------<br>";
-}
-
-
-
-})->name('test');
 
 require __DIR__.'/auth.php';
